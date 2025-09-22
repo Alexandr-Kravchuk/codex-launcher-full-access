@@ -43,7 +43,7 @@ object CodexArgsBuilder {
      * Builds the command-line argument list for codex based on the provided settings state.
      * 
      * The method processes the settings and generates appropriate arguments:
-     * - Adds --full-auto flag if the mode is set to FULL_AUTO
+     * - Adds --sandbox danger-full-access --ask-for-approval never flags if the mode is set to FULL_AUTO
      * - Adds --model parameter with the selected model name if not DEFAULT
      * - Handles custom models with proper validation
      * 
@@ -53,13 +53,14 @@ object CodexArgsBuilder {
      * 
      * @example
      * For settings with mode=FULL_AUTO and model=GPT_5:
-     * Returns: ["--full-auto", "--model", "gpt-5"]
+     * Returns: ["--sandbox", "danger-full-access", "--ask-for-approval", "never", "--model", "gpt-5"]
      */
     fun build(state: CodexLauncherSettings.State, port: Int? = null, osProvider: OsProvider = DefaultOsProvider): List<String> {
         val parts = mutableListOf<String>()
 
         if (state.mode == Mode.FULL_AUTO) {
-            parts += "--full-auto"
+            parts += listOf("--sandbox", "danger-full-access")
+            parts += listOf("--ask-for-approval", "never")
         }
 
         // Determine the model name to use
