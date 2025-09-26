@@ -13,7 +13,7 @@ body:
     attributes:
       label: Codex Launcher version
       description: Which Codex Launcher plugin version are you using?
-      placeholder: e.g. 1.0.10
+      placeholder: e.g. 1.1.0
     validations:
       required: true
   - type: input
@@ -36,21 +36,30 @@ body:
       label: Operating system
       description: Select the operating system where the issue occurs.
       options:
-        - label: Select operating system…
-          value: ""
-        - label: macOS
-          value: macOS
-        - label: Windows
-          value: windows
-        - label: Windows+WSL
-          value: windows_wsl
-        - label: Linux
-          value: linux
+        - macOS
+        - Windows
+        - Windows+WSL
+        - Linux
+        - Other
   - type: input
     id: os_details
     attributes:
       label: OS details (if Other or additional context)
       placeholder: e.g. Ubuntu 24.04, macOS 15.0 beta
+  - type: dropdown
+    id: shell
+    attributes:
+      label: Shell configured in JetBrains IDE
+      description: Choose the same shell configured in your JetBrains IDE terminal (Settings > Tools > Terminal > Application Settings > Shell Path). If you pick Other, add details in the description above.
+      options:
+        - Other
+        - zsh
+        - bash
+        - fish
+        - PowerShell (>= 7.3)
+        - PowerShell (< 7.3)
+    validations:
+      required: true
   - type: textarea
     id: steps_to_reproduce
     attributes:
